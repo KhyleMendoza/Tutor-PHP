@@ -4,9 +4,9 @@ $username = "root";
 $password = "";
 $dbname = "store";
 
-$message = "";
-
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+$message = "";
 
 if($conn->connect_error){
     die("Connection Failed:" . $conn->connect_error);
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <form method="POST">
-        <h1>Register</h1>
+        <h2>Register</h2>
         <div>
             <label for="username">Username:</label>
             <input type="text" name="username">
@@ -67,7 +67,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p>$message</p>";
         } ?>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="login.php">Click here to login</a></p>
     </form>
 </body>
 </html>
