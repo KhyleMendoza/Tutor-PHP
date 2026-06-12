@@ -27,6 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (password_verify($password, $user['password'])) {
                 $message = "Login Successful!";
+
+                $_SESSION['username'] = $user['username'];
+
+                header("Location: dashboard.php");
+                exit();
             } else {
                 $message = "Incorrect password!";
             }
@@ -60,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if (!empty($message)) {
             echo "<p>$message</p>";
         } ?>
-        
+
         <button type="submit">Login</button>
         <p>Don't have an account yet? <a href="index.php">click here to register!</a></p>
     </form>
