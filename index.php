@@ -21,16 +21,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Please fill all empty fields!";
     } else {
         $check_Username = "SELECT * FROM users WHERE username = '$username'";
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $check = $conn->query($check_Username);
 
-        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-
-        // $conn -> query($sql);
-
-        if($conn -> query($sql) === TRUE) {
-            $message = "Registered successfully!";
+        if ($check->num_rows > 0) {
+            $message = "Username is already taken!";
         } else {
-            $message = "Error:" . $conn -> error;
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
+
+            // $conn -> query($sql);
+
+            if($conn -> query($sql) === TRUE) {
+                $message = "Registered successfully!";
+            } else {
+                $message = "Error:" . $conn -> error;
+            }
         }
     }
 }
