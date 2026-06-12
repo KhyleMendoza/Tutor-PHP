@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +16,7 @@
 </head>
 <body>
     <h1>Dashboard</h1>
-    <p>Welcome back </p>
+    <p>Welcome back, <?php echo $_SESSION['username']; ?>!</p>
+    <a href="logout.php">Logout</a>
 </body>
 </html>
