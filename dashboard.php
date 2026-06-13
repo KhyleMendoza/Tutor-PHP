@@ -17,6 +17,11 @@ if (!isset($_SESSION['username'])) {
 <body>
     <h1>Dashboard</h1>
     <p>Welcome back, <?php echo $_SESSION['username']; ?>!</p>
+    <?php 
+    if ($_SESSION['role'] === "admin") {
+        echo "<a href='admin/users.php'>View Users</a>";
+    }
+    ?>
     <a href="logout.php">Logout</a>
 </body>
 </html>

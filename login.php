@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $message = "Login Successful!";
 
                 $_SESSION['username'] = $user['username'];
-
+                $_SESSION['role'] = $user['role'];
                 header("Location: dashboard.php");
                 exit();
             } else {
